@@ -1,0 +1,103 @@
+= Konfig =
+
+1. Introduzione
+
+Konfig è uno script sviluppato per dare la possibilità ad utenze non privilegiate di poter modificare la configurazione
+di specifici servizi (es. nagios, bind ..) e di poter applicare le modifiche tramite l'esecuzione di script sudo.
+Tutte le modifiche delle configurazioni saranno salvate in un repository GIT, in modo da poter ritornare a
+configurazioni stabili e funzionanti.
+
+
+2. Workflow
+
+L'installazione ed inizializzazione verrà eseguita dall'utente root. Con questa procedura verranno creati tanti
+repository GIT, quanti sono i servizi da gestire, in /usr/local/konfigrepo/ (es. /usr/local/konfigrepo/nagios3/) in
+base alle esigenze del cliente.
+
+L'utenza non privilegiata dovrà lavorare nella propria home o in un posto dove ha i permessi di scrittura per poter
+clonare il repository e così iniziare la configurazione.
+
+
+ssh utente@server-con-konfig-configurato
+git clone /usr/local/konfigrepo/nagios3
+     Cloning into 'nagios3'...
+     done.
+
+D'ora in poi sarà possibile modificare e riavviare il servizio (es. nagios) direttamente dalla propria home. Infatti:
+
+utente@server-con-konfig-configurato:~$ tree nagios3/
+nagios3/
+├── apache2.conf
+├── cgi.cfg
+├── commands.cfg
+├── conf.d
+│   ├── contacts_nagios2.cfg
+│   └── [...]
+├── htpasswd.users
+├── Konfigfile
+├── nagios.cfg
+├── resource.cfg
+└── stylesheets
+[...]
+
+2.1 Modificare e testare una configurazione
+
+Apportare le modifiche necessarie al file di configurazione, per esempio sostituire una mail di ricezione notifiche.
+
+Per salvare la configurazione eseguire:
+
+    konfig save 'Modificata configurazione email utente@mail'
+
+Questo comando eseguirà un commit al repository e lo invierà ad repo remoto. In questo modo sarà possibile ripristinare
+la configurazione funzionante senza aprire nuovamente i file.
+
+
+Per testare la configurazione eseguire:
+
+    konfig restart
+
+Questo comando allinearà la configurazione con il repository presente nella directory /etc/nagios3 e riavvierà il servizio,
+notificando eventuali errori.
+
+NB: Al fine di essere sicuri di avere la configurazione allineata e per essere certi di importare le modifiche eseguite
+da un altro utente, si consiglia di lanciare il comando:
+
+    konfig refresh
+
+Con questa opzione si farà un pull del repository centrale.
+
+2.2 Problema: la configurazione non va bene, è necessario fare rollback per ripristinare il servizio!
+
+    konfig restore
+    konfig restart
+
+Il primo comando ripristinerà la configurazione "stabile" da cui si è partiti, mentre il secondo si occuperà del riavvio
+del servizio stesso.
+
+2.3 Lista delle operazioni effettuate
+
+Ogni "commit" della configurazione sarà salvata con un messaggio di default nel caso in cui venga omessa la descrizione
+della modifica. E' possibile visualizzare le modifiche:
+
+    konfig list
+
+3. Script
+
+Konfig -> /usr/local/konfig/bin/konfig
+
+=====
+
+Usage:  konfig [save|list|restore|restart] ['descrizione commit']
+
+  save  'descrizione commit' :  Salva i file di configurazione ed aggiorna il versioning
+  list :     Mostra la lista dei commit effettuati
+  restore:   Resetta la configurazione all'ultima versione salvata
+  restart:   Riavvia il servizio
+
+=====
+
+
+4. Altro?
+
+
+

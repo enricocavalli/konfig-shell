@@ -1,0 +1,11 @@
+konfig-init:
+
+inizializzazione iniziale (una tantum) della directory che conterrà i repository
+viene creato anche il gruppo di default (konfig)
+
+konfig-repo:
+
+prende come argomento N directory che vengono inserite in gestione tramite
+konfig
+
+esempio ./konfig-repo.sh /etc/ssh /etc/freeradius
