@@ -1,5 +1,7 @@
 #!/bin/bash
 
+REPOS_PATH=${REPOS_PATH:-"/usr/local/konfigrepo"}
+
 help="
 
 Usage:  konfig.sh [save|log|revert|restart|refresh] ['descrizione commit']
@@ -11,6 +13,7 @@ Usage:  konfig.sh [save|log|revert|restart|refresh] ['descrizione commit']
   refresh:   Sincronizza le configurazioni del server centrale, viene eseguito automaticamente
              ad ogni operazione, ma è consogliabile lanciarlo prima di iniziare la modifica
              delle configurazioni
+  list: mostra i servizi gestibili tramite konfig.sh
 
 "
 
@@ -36,6 +39,11 @@ init_git_config()
 log()
 {
 	git log --pretty=format:"%h - %an, %ar : %s"
+}
+
+list()
+{
+	ls $REPOS_PATH
 }
 
 refresh()
