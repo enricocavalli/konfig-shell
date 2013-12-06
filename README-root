@@ -9,3 +9,9 @@ prende come argomento N directory che vengono inserite in gestione tramite
 konfig
 
 esempio ./konfig-repo.sh /etc/ssh /etc/freeradius
+
+configurazione sudo:
+gli utenti del gruppo konfig devono poter eseguire gli script di riavvio
+
+%konfig   ALL=(ALL) NOPASSWD: /etc/konfig/*/[0-9]*_*
+
