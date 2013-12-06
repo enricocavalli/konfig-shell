@@ -4,7 +4,7 @@ REPOS_PATH=${REPOS_PATH:-"/usr/local/konfigrepo"}
 
 help="
 
-Usage:  konfig.sh [save|log|revert|restart|refresh] ['descrizione commit']
+Usage:  konfig.sh [save|log|revert|restart|refresh|list] ['descrizione commit']
 
   save  'descrizione commit' :  Salva i file di configurazione ed aggiorna il versioning
   log :     Mostra la lista dei commit effettuati
