@@ -4,7 +4,7 @@ REPOS_PATH=${REPOS_PATH:-"/usr/local/konfigrepo"}
 
 help="
 
-Usage:  konfig.sh [save|log|revert|restart|refresh|list] ['descrizione commit']
+Usage:  konfig.sh [save|log|revert|restart|refresh|list|clone] ['descrizione commit']
 
   save  'descrizione commit' :  Salva i file di configurazione ed aggiorna il versioning
   log :     Mostra la lista dei commit effettuati
@@ -14,6 +14,7 @@ Usage:  konfig.sh [save|log|revert|restart|refresh|list] ['descrizione commit']
              ad ogni operazione, ma è consogliabile lanciarlo prima di iniziare la modifica
              delle configurazioni
   list: mostra i servizi gestibili tramite konfig.sh
+  clone: clona uno dei repository gestiti
 
 "
 
@@ -44,6 +45,11 @@ log()
 list()
 {
 	ls $REPOS_PATH
+}
+
+clone()
+{
+	git clone "$REPOS_PATH/$@"
 }
 
 refresh()
@@ -126,6 +132,10 @@ log)
 ;;
 list)
 	list
+;;
+clone)
+	shift
+	clone $@
 ;;
 refresh) 
 	refresh
