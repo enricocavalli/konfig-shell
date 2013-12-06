@@ -29,9 +29,13 @@ git push origin master
 
 mkdir -p /etc/konfig/$repo_name
 
-cat << EOF > /etc/konfig/$repo_name/konfig_restart_service.sh
+cat << EOF > /etc/konfig/$repo_name/konfig_pull.sh
 cd $dir_to_be_managed
 git pull --rebase
+EOF
+chmod +x /etc/konfig/$repo_name/konfig_pull.sh
+
+cat << EOF > /etc/konfig/$repo_name/konfig_restart_service.sh
 /etc/init.d/$repo_name restart
 EOF
 chmod +x /etc/konfig/$repo_name/konfig_restart_service.sh
