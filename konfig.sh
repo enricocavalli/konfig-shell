@@ -97,8 +97,8 @@ restart_services()
 	bin="$restart_scripts_dir/konfig_restart_service.sh"
 	syntax="$restart_scripts_dir/konfig_check_syntax_service.sh"
 
-	[ -x "$syntax" ] && exec_script "$syntax"
-	[ -x "$bin" ] && exec_script "$bin"
+	[ -x "$syntax" ] && echo "CONTROLLO SINTASSI" && exec_script "$syntax"
+	[ -x "$bin" ] && echo "RILANCIO SERVIZIO" && exec_script "$bin"
 }
 
 save()
