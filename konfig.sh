@@ -94,13 +94,10 @@ restart_services()
 		echo "Unable to find configuration to restart service"
 		exit
 	fi
-	bin="$restart_scripts_dir/konfig_restart_service.sh"
-	syntax="$restart_scripts_dir/konfig_check_syntax_service.sh"
-	pull="$restart_scripts_dir/konfig_pull.sh"
 
-	[ -x "$pull" ] && exec_script "$pull"
-	[ -x "$syntax" ] && exec_script "$syntax"
-	[ -x "$bin" ] && exec_script "$bin"
+	for file in $restart_scripts_dir/*; do
+		[ -x "$file" ] && echo "Executing $file" && exec_script "$file"
+	done
 }
 
 save()
