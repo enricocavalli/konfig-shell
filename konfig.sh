@@ -92,7 +92,7 @@ save()
 
 	msg="$@" # metto tra virgolette così gli argomenti vengono preservati anche se non ci sono virgolette nel comando
 
-	if [ "msg" != "" ];
+	if [ -z "$msg" ];
 	then
 	  msg='Messaggio non definito'
 	fi
