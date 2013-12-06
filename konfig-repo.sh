@@ -35,6 +35,11 @@ git pull --rebase
 /etc/init.d/$repo_name restart
 EOF
 chmod +x /etc/konfig/$repo_name/konfig_restart_service.sh
+
+cat << EOF > /etc/konfig/$repo_name/konfig_check_syntax_service.sh
+true
+EOF
+chmod +x /etc/konfig/$repo_name/konfig_check_syntax_service.sh
 fi
 done
 else
