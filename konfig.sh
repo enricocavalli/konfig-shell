@@ -2,10 +2,10 @@
 
 help="
 
-Usage:  konfig.sh [save|list|revert|restart|refresh] ['descrizione commit']
+Usage:  konfig.sh [save|log|revert|restart|refresh] ['descrizione commit']
 
   save  'descrizione commit' :  Salva i file di configurazione ed aggiorna il versioning
-  list :     Mostra la lista dei commit effettuati
+  log :     Mostra la lista dei commit effettuati
   revert:    Esegue il rollback all'ultima configurazione salvata
   restart:   Riavvia il servizio
   refresh:   Sincronizza le configurazioni del server centrale, viene eseguito automaticamente
@@ -33,7 +33,7 @@ init_git_config()
 	fi
 }
 
-list()
+log()
 {
 	git log --pretty=format:"%h - %an, %ar : %s"
 }
@@ -113,6 +113,9 @@ fi
 init_git_config
 
 case $1 in
+log)
+	log
+;;
 list)
 	list
 ;;
