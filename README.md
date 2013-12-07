@@ -28,7 +28,7 @@ konfig-repo.sh /etc/directory
 </pre>
 
 Ovviamente il sistema è generalizzabile con più gruppi. Questo script oltre a
-creare il repository in /etc/directory e clonarlo sotto
+creare il repository in `/etc/directory` e clonarlo sotto
 `/usr/local/konfigrepo`, imposta correttamente i permessi e crea gli script da
 eseguire tramite sudo sotto `/etc/konfig/directory/`.
 
@@ -36,7 +36,7 @@ Questi script sono numerati `00_xxx.sh`, `01_yyy.sh`, e così via, dove il
 numero serve a dare un ordine all'esecuzione e tipicamente avremo:
 
 - lo script 00 importa le ultime modifiche dal repository condiviso
-- lo script 01 fa un eventuale controllo di sintassy
+- lo script 01 fa un eventuale controllo di sintassi
 - lo script 02 esegue il restart del servizio.
 
 Se uno script termina con errore l'esecuzione ovviamente si ferma.
@@ -66,7 +66,7 @@ $ ssh utente@server-con-konfig-configurato
 $ konfig.sh list
 bind nagios3
 
-$ konfig.sh nagios3
+$ konfig.sh clone nagios3
 </pre>
 
 A questo punto l'utente si ritrova nella sua HOME una directory in tutto e per
@@ -86,7 +86,7 @@ Quanto segue si intende eseguito all'interno di un repository gestito tramite
 Per salvare delle modifiche eseguire semplicemente 
 
 <pre>
-konfig.sh save 'Eventuale commento significativo
+konfig.sh save 'Eventuale commento significativo'
 </pre>
 
 Il comando esegue un commit nel repository utente e un push sul repository
