@@ -16,16 +16,15 @@ L'utente root deve inizializzare una tantum il sistema, creando un gruppo
 `konfig` e una directory che conterrà i repository cui gli utenti autorizzati
 avranno accesso. L'inizializzazione viene fatta tramite lo script
 
-<pre>
-konfig-init.sh
-</pre>
+
+    konfig-init.sh
+
 
 Per inserire una directory di configurazione nel sistema di gestione root
 eseguirà
 
-<pre>
-konfig-repo.sh /etc/directory
-</pre>
+    konfig-repo.sh /etc/directory
+
 
 Ovviamente il sistema è generalizzabile con più gruppi. Questo script oltre a
 creare il repository in `/etc/directory` e clonarlo sotto
@@ -60,14 +59,12 @@ lavorare sulla configurazione.
 
 
 Ad esempio:
-<pre>
 
-$ ssh utente@server-con-konfig-configurato
-$ konfig.sh list
-bind nagios3
+    $ ssh utente@server-con-konfig-configurato
+    $ konfig.sh list
+    bind nagios3
 
-$ konfig.sh clone nagios3
-</pre>
+    $ konfig.sh clone nagios3
 
 A questo punto l'utente si ritrova nella sua HOME una directory in tutto e per
 tutto uguale alla configurazione originale del servizio e potrà operare su
@@ -85,9 +82,7 @@ Quanto segue si intende eseguito all'interno di un repository gestito tramite
 
 Per salvare delle modifiche eseguire semplicemente 
 
-<pre>
-konfig.sh save 'Eventuale commento significativo'
-</pre>
+    konfig.sh save 'Eventuale commento significativo'
 
 Il comando esegue un commit nel repository utente e un push sul repository
 condiviso (non prima di aver scaricato le ultime modifiche dal repository
@@ -96,9 +91,7 @@ centrale).
 E' naturalmente possibile, anzi raccomandabile, fare un refresh dal repository
 centrale prima di iniziare a lavorare sulle configurazioni:
 
-<pre>
-konfig.sh refresh
-</pre>
+    konfig.sh refresh
 
 
 ### Restart del servizio
@@ -112,9 +105,9 @@ E' sempre possibile vedere la storia delle modifiche effettuate sul
 repository: è indicato chi ha fatto quale modifica. Trattandosi di repository
 git sono comunque disponibili tutti i comandi git.
 
-<pre>
-$ konfig.sh log
-</pre>
+
+    $ konfig.sh log
+
 
 
 ### Annullare una configurazione non corretta
@@ -123,7 +116,8 @@ Posto che è comunque possibile, in caso di errori, continuare l'editing e fare
 un nuovo save, è in realtà possibile effettuare un `revert` all'ultima
 configurazione stabile. I comandi sono:
 
-<pre>
-$ konfig.sh revert
-$ konfig.sh restart
-</pre>
+
+    $ konfig.sh revert
+    $ konfig.sh restart
+
+
