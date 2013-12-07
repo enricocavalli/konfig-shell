@@ -54,7 +54,7 @@ clone()
 
 refresh()
 {
-	git pull
+	git pull --rebase
 }
 
 refresh_and_rebase()
