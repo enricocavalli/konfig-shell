@@ -9,7 +9,26 @@ Tutte le modifiche delle configurazioni saranno salvate in un repository GIT,
 in modo da poter ritornare a configurazioni stabili e funzionanti in caso di
 problemi.
 
+## Guida pratica
 
+I passi che verranno comunemente eseguiti da chi deve applicare configurazioni sono
+
+- clono un repository di configurazioni da gestire
+- modifico i file di configurazione
+- salvo la configurazione
+- faccio ripartire il servizio
+
+Come comandi shell:
+
+    konfig.sh list
+    konfig.sh clone nagios3
+
+    [ ... ]
+    
+    konfig.sh save "Ho fatto la modifica XYZ"
+    konfig.sh restart
+
+   
 ## Passi a cura dell'utente root
 
 L'utente root deve inizializzare una tantum il sistema, creando un gruppo
@@ -17,7 +36,7 @@ L'utente root deve inizializzare una tantum il sistema, creando un gruppo
 avranno accesso. L'inizializzazione viene fatta tramite lo script
 
 
-    konfig-init.sh
+    $ konfig-init.sh
 
 
 Per inserire una directory di configurazione nel sistema di gestione root
