@@ -18,16 +18,20 @@ I passi che verranno comunemente eseguiti da chi deve applicare configurazioni s
 - salvo la configurazione
 - faccio ripartire il servizio
 
-Come comandi shell:
+Come comandi shell la prima volta:
 
     konfig.sh list
     konfig.sh clone nagios3
 
     [ ... ]
-    
     konfig.sh save "Ho fatto la modifica XYZ"
     konfig.sh restart
 
+Comandi shell per le volte successive:
+
+    konfig.sh refresh
+    konfig.sh save "messaggio esplicativo"
+    konfig.sh restart
    
 ## Passi a cura dell'utente root
 
