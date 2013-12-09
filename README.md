@@ -11,7 +11,8 @@ problemi.
 
 ## Guida pratica
 
-I passi che verranno comunemente eseguiti da chi deve applicare configurazioni sono
+I passi che verranno comunemente eseguiti da chi deve applicare configurazioni
+sono
 
 - clono un repository di configurazioni da gestire
 - modifico i file di configurazione
