@@ -87,7 +87,7 @@ exec_script()
 exec_service_scripts()
 {
 
-	local reload_or_restart = $1
+	local reload_or_restart=$1
 	#esiste il file per il controllo della sintassi?
 	restart_scripts_dir=$(get_restart_scripts)
 
