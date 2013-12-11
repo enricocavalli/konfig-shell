@@ -9,6 +9,7 @@ Tutte le modifiche delle configurazioni saranno salvate in un repository GIT,
 in modo da poter ritornare a configurazioni stabili e funzionanti in caso di
 problemi.
 
+
 ## Guida pratica
 
 I passi che verranno comunemente eseguiti da chi deve applicare configurazioni
@@ -33,7 +34,8 @@ Comandi shell per le volte successive:
     konfig.sh refresh
     konfig.sh save "messaggio esplicativo"
     konfig.sh reload|restart
-   
+ 
+
 ## Passi a cura dell'utente root
 
 L'utente root deve inizializzare una tantum il sistema, creando un gruppo
@@ -68,9 +70,7 @@ Se uno script termina con errore l'esecuzione ovviamente si ferma.
 
 L'utente root avrà cura di inserire in `/etc/sudoers` una riga del tipo
 
-<pre>
-%konfig   ALL=(ALL) NOPASSWD: /etc/konfig/*/*.sh
-</pre>
+	%konfig   ALL=(ALL) NOPASSWD: /etc/konfig/*/*.sh
 
 
 ## Workflow utente
@@ -131,9 +131,7 @@ E' sempre possibile vedere la storia delle modifiche effettuate sul
 repository: è indicato chi ha fatto quale modifica. Trattandosi di repository
 git sono comunque disponibili tutti i comandi git.
 
-
     $ konfig.sh log
-
 
 
 ### Annullare una configurazione non corretta
@@ -141,7 +139,6 @@ git sono comunque disponibili tutti i comandi git.
 Posto che è comunque possibile, in caso di errori, continuare l'editing e fare
 un nuovo save, è in realtà possibile effettuare un `revert` all'ultima
 configurazione stabile. I comandi sono:
-
 
     $ konfig.sh revert
     $ konfig.sh restart
