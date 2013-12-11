@@ -38,25 +38,22 @@ cd $dir_to_be_managed
 git pull --rebase
 EOF
 
-		chmod +x /etc/konfig/$repo_name/00_pull.sh
 
 		cat << EOF > /etc/konfig/$repo_name/02_reload.sh
 /etc/init.d/$repo_name reload
 EOF
 
-		chmod +x /etc/konfig/$repo_name/02_reload.sh
 
 		cat << EOF > /etc/konfig/$repo_name/01_check_syntax.sh
 true
 EOF
 
-		chmod +x /etc/konfig/$repo_name/01_check_syntax.sh
 
 		cat << EOF > /etc/konfig/$repo_name/zz_restart.sh
 /etc/init.d/$repo_name restart
 EOF
 
-		chmod +x /etc/konfig/$repo_name/zz_restart.sh		
+		chmod +x /etc/konfig/$repo_name/*.sh		
 		
 		fi
 	done
