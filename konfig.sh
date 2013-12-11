@@ -72,7 +72,9 @@ get_restart_scripts()
 		echo "A file named \"Konfigfile\" must be present"
 		exit 1
 	fi
-	. Konfigfile && echo $service
+	. Konfigfile
+	[ -z "$service" ] && echo "Unable to find configuration to restart service" && exit 1
+	echo "$service"
 }
 
 exec_script()
@@ -90,10 +92,6 @@ restart_services()
 {
 	#esiste il file per il controllo della sintassi?
 	restart_scripts_dir=$(get_restart_scripts)
-	if [ -z "$restart_scripts_dir" ]; then
-		echo "Unable to find configuration to restart service"
-		exit
-	fi
 
 	for file in $restart_scripts_dir/*; do
 		[ -x "$file" ] && echo "Executing $file" && exec_script "$file"
