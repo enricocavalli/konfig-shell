@@ -53,11 +53,6 @@ clone()
 	git clone "$REPOS_PATH/$@"
 }
 
-refresh()
-{
-	git pull --rebase
-}
-
 refresh_and_rebase()
 {
 	git pull --rebase
@@ -146,7 +141,7 @@ clone)
 	clone $@
 ;;
 refresh) 
-	refresh
+	refresh_and_rebase
 ;;
 save)
 	shift # passo tutti gli argomenti dal due in poi alla funzione save
