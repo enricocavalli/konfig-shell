@@ -95,7 +95,7 @@ exec_service_scripts()
 		[ -x "$file" ] && echo "Executing $file" && exec_script "$file"
 	done
 
-  exec_script "$restart_scripts_dir/$reload_or_restart"
+  exec_script "$restart_scripts_dir/$reload_or_restart.sh"
 }
 
 save()
