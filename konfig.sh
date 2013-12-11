@@ -84,24 +84,18 @@ exec_script()
 	fi
 }
 
-reload_services()
+exec_service_scripts()
 {
+
+	local reload_or_restart = $1
 	#esiste il file per il controllo della sintassi?
 	restart_scripts_dir=$(get_restart_scripts)
 
-	for file in $restart_scripts_dir/[0-9]*; do
+	for file in $restart_scripts_dir/[0-9]*.sh; do
 		[ -x "$file" ] && echo "Executing $file" && exec_script "$file"
 	done
-}
 
-restart_services()
-{
-	#esiste il file per il controllo della sintassi?
-	restart_scripts_dir=$(get_restart_scripts)
-
-	for file in $restart_scripts_dir/*; do
-		[ -x "$file" ] && echo "Executing $file" && exec_script "$file"
-	done
+  exec_script "$restart_scripts_dir/$reload_or_restart"
 }
 
 save()
@@ -114,7 +108,7 @@ save()
 	  msg='Messaggio non definito'
 	fi
 	git add . && git commit -m "$msg" && refresh_and_rebase && git push
-	#restart_services
+
 }
 
 revert()
@@ -151,10 +145,10 @@ revert)
 	revert
 ;;
 restart)
-	restart_services
+	exec_service_scripts "restart"
 ;;
 reload)
-	reload_services
+	exec_service_scripts "reload"
 ;;
 *) echo "$help"
 ;;
