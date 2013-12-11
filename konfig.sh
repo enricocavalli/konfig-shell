@@ -9,7 +9,8 @@ Usage:  konfig.sh [save|log|revert|restart|refresh|list|clone] ['descrizione com
   save  'descrizione commit' :  Salva i file di configurazione ed aggiorna il versioning
   log :     Mostra la lista dei commit effettuati
   revert:    Esegue il rollback all'ultima configurazione salvata
-  restart:   Riavvia il servizio
+  restart:   Effettua il restart del servizio
+  reload:	 Effettua il reload della configurazione del servizio
   refresh:   Sincronizza le configurazioni del server centrale, viene eseguito automaticamente
              ad ogni operazione, ma è consogliabile lanciarlo prima di iniziare la modifica
              delle configurazioni
@@ -88,6 +89,16 @@ exec_script()
 	fi
 }
 
+reload_services()
+{
+	#esiste il file per il controllo della sintassi?
+	restart_scripts_dir=$(get_restart_scripts)
+
+	for file in $restart_scripts_dir/[0-9]*; do
+		[ -x "$file" ] && echo "Executing $file" && exec_script "$file"
+	done
+}
+
 restart_services()
 {
 	#esiste il file per il controllo della sintassi?
@@ -146,6 +157,9 @@ revert)
 ;;
 restart)
 	restart_services
+;;
+reload)
+	reload_services
 ;;
 *) echo "$help"
 ;;
