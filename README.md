@@ -26,13 +26,13 @@ Come comandi shell la prima volta:
 
     [ ... ]
     konfig.sh save "Ho fatto la modifica XYZ"
-    konfig.sh restart
+    konfig.sh reload|restart
 
 Comandi shell per le volte successive:
 
     konfig.sh refresh
     konfig.sh save "messaggio esplicativo"
-    konfig.sh restart
+    konfig.sh reload|restart
    
 ## Passi a cura dell'utente root
 
@@ -55,19 +55,21 @@ creare il repository in `/etc/directory` e clonarlo sotto
 `/usr/local/konfigrepo`, imposta correttamente i permessi e crea gli script da
 eseguire tramite sudo sotto `/etc/konfig/directory/`.
 
-Questi script sono numerati `00_xxx.sh`, `01_yyy.sh`, e così via, dove il
-numero serve a dare un ordine all'esecuzione e tipicamente avremo:
+Questi script sono numerati `00_*.sh`, dove il numero serve a dare un ordine
+all'esecuzione e tipicamente avremo:
 
-- lo script 00 importa le ultime modifiche dal repository condiviso
-- lo script 01 fa un eventuale controllo di sintassi
-- lo script 02 esegue il restart del servizio.
+- 00_pull.sh importa le ultime modifiche dal repository condiviso
+- 01_check_syntax.sh fa un eventuale controllo di sintassi
+
+Sono presenti anche gli script `reload.sh` e `restart.sh` dall'ovvio
+significato.
 
 Se uno script termina con errore l'esecuzione ovviamente si ferma.
 
 L'utente root avrà cura di inserire in `/etc/sudoers` una riga del tipo
 
 <pre>
-%konfig   ALL=(ALL) NOPASSWD: /etc/konfig/*/[0-9]*_*
+%konfig   ALL=(ALL) NOPASSWD: /etc/konfig/*/*.sh
 </pre>
 
 
