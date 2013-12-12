@@ -107,7 +107,7 @@ save()
 	then
 	  msg='Messaggio non definito'
 	fi
-	git add . && git commit -m "$msg" && refresh_and_rebase && git push
+	git add . && git commit -a -m "$msg" && refresh_and_rebase && git push
 
 }
 
