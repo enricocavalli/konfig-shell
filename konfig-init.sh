@@ -13,6 +13,6 @@ chmod 2770 $REPOS_PATH
 echo "Konfig dir $REPOS_PATH created."
 echo "Now remember to adduser ... konfig"
 
-echo "Installing git-core"
+echo "Installing git"
 apt-get update
-apt-get install git-core
+apt-get install git-core git
