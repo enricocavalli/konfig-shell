@@ -143,4 +143,8 @@ configurazione stabile. I comandi sono:
     $ konfig.sh revert
     $ konfig.sh restart
 
+### Impostazioni del git client
 
+E' consigliabile configurare sul proprio client git
+
+    git config --global push.default simple
